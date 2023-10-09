@@ -1,0 +1,188 @@
+[gd_scene load_steps=22 format=3 uid="uid://vsorfidp5ekd"]
+
+[ext_resource type="Script" path="res://characters/player/player.gd" id="1_d78xu"]
+[ext_resource type="Texture2D" uid="uid://b3i53hfap8cik" path="res://characters/player/player.png" id="2_mt2cl"]
+[ext_resource type="Texture2D" uid="uid://rmlpmucyqkr5" path="res://characters/player/parry/parry_shield.png" id="2_swyy5"]
+[ext_resource type="Script" path="res://characters/player/parry/parry.gd" id="3_ej7yw"]
+[ext_resource type="Script" path="res://characters/player/draw_debug.gd" id="5_nt2s3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kleed"]
+size = Vector2(12, 18.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f5lq"]
+atlas = ExtResource("2_swyy5")
+region = Rect2(64, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_861rt"]
+atlas = ExtResource("2_swyy5")
+region = Rect2(32, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uwlw"]
+atlas = ExtResource("2_swyy5")
+region = Rect2(0, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bc0p"]
+atlas = ExtResource("2_swyy5")
+region = Rect2(96, 0, 30, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0h6yi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3f5lq")
+}],
+"loop": true,
+"name": &"black",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_861rt")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uwlw")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bc0p")
+}],
+"loop": true,
+"name": &"white",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veict"]
+atlas = ExtResource("2_mt2cl")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n4vv"]
+atlas = ExtResource("2_mt2cl")
+region = Rect2(144, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5sie"]
+atlas = ExtResource("2_mt2cl")
+region = Rect2(24, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snt38"]
+atlas = ExtResource("2_mt2cl")
+region = Rect2(48, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7m6l"]
+atlas = ExtResource("2_mt2cl")
+region = Rect2(72, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkwcw"]
+atlas = ExtResource("2_mt2cl")
+region = Rect2(96, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1twh"]
+atlas = ExtResource("2_mt2cl")
+region = Rect2(120, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jihfy"]
+atlas = ExtResource("2_mt2cl")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cooj2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veict")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n4vv")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5sie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snt38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7m6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkwcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1twh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jihfy")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_224ig"]
+size = Vector2(12, 16)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+position = Vector2(0, -10)
+script = ExtResource("1_d78xu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.75)
+shape = SubResource("RectangleShape2D_kleed")
+
+[node name="ParryAnimation" type="AnimatedSprite2D" parent="CollisionShape2D"]
+modulate = Color(1, 1, 1, 0.5)
+z_index = 1
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_0h6yi")
+animation = &"black"
+script = ExtResource("3_ej7yw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cooj2")
+animation = &"run"
+frame = 5
+frame_progress = 0.581908
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("5_nt2s3")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_224ig")
+debug_color = Color(0.670588, 0.4, 0.811765, 0.419608)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.25
+one_shot = true
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bugs42uwny20"]
+
+[ext_resource type="Script" path="res://levels/test_platform.gd" id="1_tgqa5"]
+[ext_resource type="PackedScene" uid="uid://vsorfidp5ekd" path="res://characters/player/player.tscn" id="2_u743e"]
+[ext_resource type="Script" path="res://characters/enemy/enemy_patrol.gd" id="3_k34to"]
+[ext_resource type="PackedScene" uid="uid://doac282chqwrx" path="res://characters/enemy/zombies/zombie.tscn" id="3_xumps"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xp2wm"]
+size = Vector2(0.900001, 14.3333)
+
+[node name="World" type="Node2D"]
+position = Vector2(-1, 0)
+script = ExtResource("1_tgqa5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(9, 0, 9, 144, 313, 144, 313, 144, 313, 0, 321, 0, 321, 192, 1, 192, 1, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_u743e")]
+position = Vector2(25, 96)
+
+[node name="EnemyPatrol" type="Node2D" parent="."]
+position = Vector2(233, 120)
+script = ExtResource("3_k34to")
+
+[node name="Zombie" parent="EnemyPatrol" instance=ExtResource("3_xumps")]
+position = Vector2(0, 10)
+
+[node name="Area2D" type="Area2D" parent="EnemyPatrol"]
+
+[node name="PointA" type="CollisionShape2D" parent="EnemyPatrol/Area2D"]
+position = Vector2(70, 0)
+scale = Vector2(5, 3)
+shape = SubResource("RectangleShape2D_xp2wm")
+
+[node name="PointB" type="CollisionShape2D" parent="EnemyPatrol/Area2D"]
+position = Vector2(-70, 0)
+scale = Vector2(5, 3)
+shape = SubResource("RectangleShape2D_xp2wm")
+
+[connection signal="body_entered" from="EnemyPatrol/Area2D" to="EnemyPatrol" method="_on_area_2d_body_entered"]
