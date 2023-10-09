@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://levels/test_platform.gd" id="1_tgqa5"]
 [ext_resource type="PackedScene" uid="uid://vsorfidp5ekd" path="res://characters/player/player.tscn" id="2_u743e"]
 [ext_resource type="Script" path="res://characters/enemy/enemy_patrol.gd" id="3_k34to"]
-[ext_resource type="PackedScene" uid="uid://doac282chqwrx" path="res://characters/enemy/zombies/zombie.tscn" id="3_xumps"]
+[ext_resource type="PackedScene" uid="uid://bfgfmokoa0kng" path="res://characters/enemy/enemy.tscn" id="5_ywcll"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xp2wm"]
 size = Vector2(0.900001, 14.3333)
@@ -26,8 +26,8 @@ position = Vector2(25, 96)
 position = Vector2(233, 120)
 script = ExtResource("3_k34to")
 
-[node name="Zombie" parent="EnemyPatrol" instance=ExtResource("3_xumps")]
-position = Vector2(0, 10)
+[node name="Enemy" parent="EnemyPatrol" instance=ExtResource("5_ywcll")]
+position = Vector2(0, 0)
 
 [node name="Area2D" type="Area2D" parent="EnemyPatrol"]
 
