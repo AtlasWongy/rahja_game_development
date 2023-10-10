@@ -11,6 +11,7 @@ const FRICTION = 1000.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction = 1.0
 var facing_right: bool = true
+var can_attack: bool = true
 	
 func _physics_process(delta):
 	if not is_on_floor():
@@ -26,8 +27,11 @@ func handle_acceleration(delta):
 func detect_the_player():
 	if player_detection.is_colliding():
 		var collider = player_detection.get_collider()
-		if collider.is_in_group('player'):
+		if collider.is_in_group('player') and can_attack:
 			animation_player.play("swing")
+			velocity.x = 0.0
+			can_attack = false
+		elif collider.is_in_group('player'):
 			velocity.x = 0.0
 	else:
 		animation_player.stop()
@@ -49,3 +53,5 @@ func handle_animation():
 	else:
 		animated_sprite_2d.play('idle')
 
+func _on_cool_down_timeout():
+	can_attack = true

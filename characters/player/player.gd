@@ -55,19 +55,15 @@ func getting_hit():
 		return
 	else:
 		if Input.is_action_just_pressed("red"):
-			print("Parried using phoenix")
 			is_getting_hit = false
 			timer.stop()
 		if Input.is_action_just_pressed("blue"):
-			print("Parried using dragon")
 			is_getting_hit = false
 			timer.stop()
 		if Input.is_action_just_pressed("white"):
-			print("Parried using lion")
 			is_getting_hit = false
 			timer.stop()
 		if Input.is_action_just_pressed("black"):
-			print("Parried using tortoise")
 			is_getting_hit = false
 			timer.stop()
 		
@@ -77,5 +73,4 @@ func _on_area_2d_area_entered(area):
 		timer.start()
 		
 func _on_timer_timeout():
-	print("I will now receive damage")
 	is_getting_hit = false

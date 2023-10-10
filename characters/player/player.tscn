@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b3i53hfap8cik" path="res://characters/player/player.png" id="2_mt2cl"]
 [ext_resource type="Texture2D" uid="uid://rmlpmucyqkr5" path="res://characters/player/parry/parry_shield.png" id="2_swyy5"]
 [ext_resource type="Script" path="res://characters/player/parry/parry.gd" id="3_ej7yw"]
-[ext_resource type="Script" path="res://characters/player/draw_debug.gd" id="5_nt2s3"]
+[ext_resource type="Script" path="res://characters/player/ripsote/riposte.gd" id="5_cealn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kleed"]
 size = Vector2(12, 18.5)
@@ -167,9 +167,6 @@ animation = &"run"
 frame = 5
 frame_progress = 0.581908
 
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource("5_nt2s3")
-
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 8
@@ -183,6 +180,9 @@ debug_color = Color(0.670588, 0.4, 0.811765, 0.419608)
 process_callback = 0
 wait_time = 0.25
 one_shot = true
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("5_cealn")
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
