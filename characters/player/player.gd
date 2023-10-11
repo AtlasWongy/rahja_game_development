@@ -5,10 +5,9 @@ const ACCELERATION = 800.0
 const FRICTION = 1000.0
 const JUMP_VELOCITY = -300
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var is_getting_hit: bool = false
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var timer = $Timer
+
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
 	apply_gravity(delta)
@@ -18,7 +17,6 @@ func _physics_process(delta):
 	apply_friction(input_axis, delta)
 	update_animations(input_axis)
 	move_and_slide()
-	getting_hit()
 	
 func apply_gravity(delta):
 	if not is_on_floor():
@@ -49,28 +47,3 @@ func update_animations(input_axis):
 
 	if not is_on_floor():
 		animated_sprite_2d.play("jump")
-		
-func getting_hit():
-	if !is_getting_hit:
-		return
-	else:
-		if Input.is_action_just_pressed("red"):
-			is_getting_hit = false
-			timer.stop()
-		if Input.is_action_just_pressed("blue"):
-			is_getting_hit = false
-			timer.stop()
-		if Input.is_action_just_pressed("white"):
-			is_getting_hit = false
-			timer.stop()
-		if Input.is_action_just_pressed("black"):
-			is_getting_hit = false
-			timer.stop()
-		
-func _on_area_2d_area_entered(area):
-	if area.is_in_group("weapon"):
-		is_getting_hit = true
-		timer.start()
-		
-func _on_timer_timeout():
-	is_getting_hit = false

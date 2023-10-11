@@ -1,43 +1,37 @@
-extends Node
+extends Node2D
 
-@onready var parry_animation = $"."
+@onready var hit_box_shape = $"../../HitBox/HitBoxShape"
+@onready var parry_timer = $"../ParryTimer"
+@onready var parry_animation = $ParryAnimation
+@onready var riposte = $"../Riposte"
 
-var in_unbound_state = false
+signal emit_damage_signal
+signal emit_riposte_charge_signal
 
-signal emit_riposte_charge
+var got_hit: bool = false
 
 func _ready():
-	parry_animation.play("normal")
+	hit_box_shape.emit_parry_signal.connect(start_parry_timer)
+	parry_animation.play("idle")
 
 func _input(event):
-	if in_unbound_state:
-		return
-	handle_red_parry(event)
-	handle_blue_parry(event)
-	handle_white_parry(event)
 	handle_black_parry(event)
-
-func handle_red_parry(event):
-	if event.is_action_pressed("red"):
-		parry_animation.play("red")
-	elif event.is_action_released("red"):
-		parry_animation.play("normal")
-		
-func handle_blue_parry(event):
-	if event.is_action_pressed("blue"):
-		parry_animation.play("blue")
-	elif event.is_action_released("blue"):
-		parry_animation.play("normal")
-		
-func handle_white_parry(event):
-	if event.is_action_pressed("white"):
-		parry_animation.play("white")
-	elif event.is_action_released("white"):
-		parry_animation.play("normal")
-		
+	
 func handle_black_parry(event):
 	if event.is_action_pressed("black"):
 		parry_animation.play("black")
-		emit_signal("emit_riposte_charge")
+		if got_hit:
+			print("Parry Registered")
+			got_hit = false
+			parry_timer.stop()
+			emit_signal("emit_riposte_charge_signal")
 	elif event.is_action_released("black"):
-		parry_animation.play("normal")
+		parry_animation.play("idle")
+
+func start_parry_timer():
+	got_hit = true
+	parry_timer.start()
+
+func _on_parry_timer_timeout():
+	got_hit = false
+	emit_signal("emit_damage_signal")

@@ -1,72 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://vsorfidp5ekd"]
+[gd_scene load_steps=26 format=3 uid="uid://vsorfidp5ekd"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_d78xu"]
 [ext_resource type="Texture2D" uid="uid://b3i53hfap8cik" path="res://characters/player/player.png" id="2_mt2cl"]
-[ext_resource type="Texture2D" uid="uid://rmlpmucyqkr5" path="res://characters/player/parry/parry_shield.png" id="2_swyy5"]
 [ext_resource type="Script" path="res://characters/player/parry/parry.gd" id="3_ej7yw"]
+[ext_resource type="Script" path="res://characters/player/hitbox/hitbox.gd" id="3_it15e"]
+[ext_resource type="Texture2D" uid="uid://rmlpmucyqkr5" path="res://characters/player/parry/parry_shield.png" id="4_rqj8m"]
 [ext_resource type="Script" path="res://characters/player/ripsote/riposte.gd" id="5_cealn"]
+[ext_resource type="Texture2D" uid="uid://clp3clr30ek6d" path="res://characters/player/player_weapon.png" id="6_dasxs"]
+[ext_resource type="Script" path="res://characters/player/stats/stats.gd" id="8_l2os8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kleed"]
-size = Vector2(12, 18.5)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3f5lq"]
-atlas = ExtResource("2_swyy5")
-region = Rect2(64, 0, 30, 30)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_861rt"]
-atlas = ExtResource("2_swyy5")
-region = Rect2(32, 0, 30, 30)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5uwlw"]
-atlas = ExtResource("2_swyy5")
-region = Rect2(0, 0, 30, 30)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5bc0p"]
-atlas = ExtResource("2_swyy5")
-region = Rect2(96, 0, 30, 30)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_0h6yi"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3f5lq")
-}],
-"loop": true,
-"name": &"black",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_861rt")
-}],
-"loop": true,
-"name": &"blue",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": null
-}],
-"loop": true,
-"name": &"normal",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5uwlw")
-}],
-"loop": true,
-"name": &"red",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5bc0p")
-}],
-"loop": true,
-"name": &"white",
-"speed": 5.0
-}]
+size = Vector2(12, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_veict"]
 atlas = ExtResource("2_mt2cl")
@@ -142,47 +86,233 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_224ig"]
-size = Vector2(12, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxf0u"]
+atlas = ExtResource("4_rqj8m")
+region = Rect2(32, 0, 30, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_elcwr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxf0u")
+}],
+"loop": true,
+"name": &"black",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_y8pvs"]
+resource_name = "riposte"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(10, -15), Vector2(15, -12), Vector2(18, -7), Vector2(18, -1), Vector2(17, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [-0.614356, -0.0331613, 0.47473, 0.548033, 0.774926]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../WeaponShape:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../WeaponShape:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_s4oxd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, -15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.614356]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../WeaponShape:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../WeaponShape:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wsfws"]
+_data = {
+"RESET": SubResource("Animation_s4oxd"),
+"riposte": SubResource("Animation_y8pvs")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5e3db"]
+size = Vector2(15.5, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fy28r"]
+size = Vector2(12, 17)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(0, -10)
 script = ExtResource("1_d78xu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.75)
+[node name="PlayerShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_kleed")
-
-[node name="ParryAnimation" type="AnimatedSprite2D" parent="CollisionShape2D"]
-modulate = Color(1, 1, 1, 0.5)
-z_index = 1
-scale = Vector2(0.6, 0.6)
-sprite_frames = SubResource("SpriteFrames_0h6yi")
-animation = &"black"
-script = ExtResource("3_ej7yw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cooj2")
-animation = &"run"
-frame = 5
-frame_progress = 0.581908
+animation = &"idle"
+
+[node name="Combat" type="Node2D" parent="."]
+
+[node name="Parry" type="Node2D" parent="Combat"]
+script = ExtResource("3_ej7yw")
+
+[node name="ParryAnimation" type="AnimatedSprite2D" parent="Combat/Parry"]
+modulate = Color(1, 1, 1, 0.5)
+scale = Vector2(0.733333, 0.7)
+sprite_frames = SubResource("SpriteFrames_elcwr")
+animation = &"idle"
+
+[node name="Riposte" type="Node2D" parent="Combat"]
+script = ExtResource("5_cealn")
+
+[node name="ParryTimer" type="Timer" parent="Combat"]
+process_callback = 0
+wait_time = 0.5
+one_shot = true
+
+[node name="Weapon" type="Area2D" parent="Combat"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="WeaponSprite" type="Sprite2D" parent="Combat/Weapon"]
+visible = false
+position = Vector2(10, -15)
+rotation = -0.614356
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_dasxs")
+
+[node name="WeaponAnimation" type="AnimationPlayer" parent="Combat/Weapon/WeaponSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_wsfws")
+}
+
+[node name="WeaponShape" type="CollisionShape2D" parent="Combat/Weapon"]
+visible = false
+position = Vector2(17.25, 3)
+shape = SubResource("RectangleShape2D_5e3db")
+disabled = true
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_224ig")
-debug_color = Color(0.670588, 0.4, 0.811765, 0.419608)
+[node name="HitBoxShape" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_fy28r")
+debug_color = Color(0.552941, 0.482353, 0.772549, 0.419608)
+script = ExtResource("3_it15e")
 
-[node name="Timer" type="Timer" parent="."]
-process_callback = 0
-wait_time = 0.25
-one_shot = true
+[node name="Stats" type="Node2D" parent="."]
+script = ExtResource("8_l2os8")
 
-[node name="Weapon" type="Node2D" parent="."]
-script = ExtResource("5_cealn")
-
-[connection signal="area_entered" from="HitBox" to="." method="_on_area_2d_area_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Combat/ParryTimer" to="Combat/Parry" method="_on_parry_timer_timeout"]
+[connection signal="area_entered" from="HitBox" to="HitBox/HitBoxShape" method="_on_hit_box_area_entered"]

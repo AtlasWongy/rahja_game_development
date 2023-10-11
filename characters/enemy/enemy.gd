@@ -27,6 +27,8 @@ func handle_acceleration(delta):
 func detect_the_player():
 	if player_detection.is_colliding():
 		var collider = player_detection.get_collider()
+		if collider == null:
+			return
 		if collider.is_in_group('player') and can_attack:
 			animation_player.play("swing")
 			velocity.x = 0.0

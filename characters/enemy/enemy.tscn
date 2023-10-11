@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfgfmokoa0kng"]
+[gd_scene load_steps=19 format=3 uid="uid://bfgfmokoa0kng"]
 
 [ext_resource type="Texture2D" uid="uid://cvrdehkogwsru" path="res://characters/enemy/enemy.png" id="1_87n80"]
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_cagsl"]
 [ext_resource type="Texture2D" uid="uid://datog2lrwxvsj" path="res://characters/enemy/enemy_weapon.png" id="2_kpxvv"]
+[ext_resource type="Script" path="res://characters/enemy/hitbox/hitbox.gd" id="4_olydo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_16pcb"]
 atlas = ExtResource("1_87n80")
@@ -205,6 +206,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_whngd"]
 size = Vector2(15, 3)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ib8uu"]
+size = Vector2(12, 17)
+
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(0, -10)
 script = ExtResource("1_cagsl")
@@ -247,4 +251,15 @@ debug_color = Color(0.705882, 0.470588, 0.372549, 0.419608)
 wait_time = 4.0
 autostart = true
 
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="HitBoxShape" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_ib8uu")
+debug_color = Color(0.905882, 0.262745, 0.388235, 0.419608)
+script = ExtResource("4_olydo")
+
 [connection signal="timeout" from="CoolDown" to="." method="_on_cool_down_timeout"]
+[connection signal="area_entered" from="HitBox" to="HitBox/HitBoxShape" method="_on_hit_box_area_entered"]

@@ -1,18 +1,19 @@
 extends Node2D
 
-var riposte_charge = 0
+const UNBOUND_STATE = 4194326
 
-@onready var emitter = $"../CollisionShape2D/ParryAnimation"
+@onready var parry = $"../Parry"
+@onready var weapon_animation = $"../Weapon/WeaponSprite/WeaponAnimation"
+
+@export var riposte_charge: int = 0
 
 func _ready():
-	emitter.emit_riposte_charge.connect(add_riposite_charge)
+	parry.emit_riposte_charge_signal.connect(add_riposite_charge)
 
 func _input(event):
-	if event.keycode == 4194326:
-		print("Send the unbound signal over")
-	if event.is_action_pressed("riposte_black"):
-		pass
+	if event.is_action_pressed("riposte") and riposte_charge > 0:
+		weapon_animation.play("riposte")
+		riposte_charge -= 1
 
 func add_riposite_charge():
 	riposte_charge += 1
-	print("Current Charge: ", riposte_charge)
