@@ -22,12 +22,13 @@ polygon = PackedVector2Array(9, 0, 9, 144, 313, 144, 313, 144, 313, 0, 321, 0, 3
 [node name="Player" parent="." instance=ExtResource("2_u743e")]
 position = Vector2(25, 96)
 
-[node name="EnemyPatrol" type="Node2D" parent="."]
-position = Vector2(233, 120)
-script = ExtResource("3_k34to")
+[node name="Enemy" parent="." instance=ExtResource("5_ywcll")]
+position = Vector2(283, 134)
 
-[node name="Enemy" parent="EnemyPatrol" instance=ExtResource("5_ywcll")]
-position = Vector2(0, 0)
+[node name="EnemyPatrol" type="Node2D" parent="."]
+visible = false
+position = Vector2(422, 51)
+script = ExtResource("3_k34to")
 
 [node name="Area2D" type="Area2D" parent="EnemyPatrol"]
 

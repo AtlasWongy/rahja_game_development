@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfgfmokoa0kng"]
+[gd_scene load_steps=21 format=3 uid="uid://bfgfmokoa0kng"]
 
 [ext_resource type="Texture2D" uid="uid://cvrdehkogwsru" path="res://characters/enemy/enemy.png" id="1_87n80"]
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_cagsl"]
 [ext_resource type="Texture2D" uid="uid://datog2lrwxvsj" path="res://characters/enemy/enemy_weapon.png" id="2_kpxvv"]
 [ext_resource type="Script" path="res://characters/enemy/hitbox/hitbox.gd" id="4_olydo"]
 [ext_resource type="Script" path="res://characters/enemy/stats/stats.gd" id="5_518tx"]
+[ext_resource type="Script" path="res://characters/enemy/patrol/patrol.gd" id="6_ynb7j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_16pcb"]
 atlas = ExtResource("1_87n80")
@@ -265,5 +266,13 @@ script = ExtResource("4_olydo")
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("5_518tx")
 
+[node name="Patrol" type="Node2D" parent="."]
+script = ExtResource("6_ynb7j")
+
+[node name="PatrolCoolDown" type="Timer" parent="Patrol"]
+process_callback = 0
+one_shot = true
+
 [connection signal="timeout" from="CoolDown" to="." method="_on_cool_down_timeout"]
 [connection signal="area_entered" from="HitBox" to="HitBox/HitBoxShape" method="_on_hit_box_area_entered"]
+[connection signal="timeout" from="Patrol/PatrolCoolDown" to="Patrol" method="_on_patrol_cool_down_timeout"]
