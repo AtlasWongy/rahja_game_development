@@ -250,7 +250,7 @@ debug_color = Color(0.705882, 0.470588, 0.372549, 0.419608)
 
 [node name="CoolDown" type="Timer" parent="."]
 wait_time = 4.0
-autostart = true
+one_shot = true
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 16

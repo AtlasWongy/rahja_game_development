@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var player_detection = $PlayerDetection
 @onready var animation_player = $Weapon/WeaponSprite/AnimationPlayer
+@onready var cool_down = $CoolDown
 
 const SPEED = 50.0
 const ACCELERATION = 800.0
@@ -33,6 +34,7 @@ func detect_the_player():
 			animation_player.play("swing")
 			velocity.x = 0.0
 			can_attack = false
+			cool_down.start()
 		elif collider.is_in_group('player'):
 			velocity.x = 0.0
 	else:
