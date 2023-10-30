@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjvnt8dbi6yna"
-path="res://.godot/imported/oak_woods_tileset.png-de6682b6be59f474781a9a71688e1164.ctex"
+uid="uid://bu6iebx4f4h3p"
+path="res://.godot/imported/masked_bandit_attack_1.png-c1cca8297ae6383dd73bd35da5cabb22.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/platform_001/oak_woods_tileset.png"
-dest_files=["res://.godot/imported/oak_woods_tileset.png-de6682b6be59f474781a9a71688e1164.ctex"]
+source_file="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_attack_1.png"
+dest_files=["res://.godot/imported/masked_bandit_attack_1.png-c1cca8297ae6383dd73bd35da5cabb22.ctex"]
 
 [params]
 

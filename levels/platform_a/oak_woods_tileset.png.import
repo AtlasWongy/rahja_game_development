@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg0xchtbliqcg"
-path="res://.godot/imported/shop.png-bee58de46dc8413e8d3136b2e9063925.ctex"
+uid="uid://cjvnt8dbi6yna"
+path="res://.godot/imported/oak_woods_tileset.png-111573ef0cb4990a6d5d9fb46a5a08c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/platform_001/shop.png"
-dest_files=["res://.godot/imported/shop.png-bee58de46dc8413e8d3136b2e9063925.ctex"]
+source_file="res://levels/platform_a/oak_woods_tileset.png"
+dest_files=["res://.godot/imported/oak_woods_tileset.png-111573ef0cb4990a6d5d9fb46a5a08c4.ctex"]
 
 [params]
 

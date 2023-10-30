@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djf401s20ih6e"
-path="res://.godot/imported/lamp.png-74f89f69a3f9519a3e306644962fb7fe.ctex"
+uid="uid://dnaaydg0p2fwf"
+path="res://.godot/imported/masked_bandit_get_hit.png-3056ed291bd281a90f195f49796edab3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/platform_001/lamp.png"
-dest_files=["res://.godot/imported/lamp.png-74f89f69a3f9519a3e306644962fb7fe.ctex"]
+source_file="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_get_hit.png"
+dest_files=["res://.godot/imported/masked_bandit_get_hit.png-3056ed291bd281a90f195f49796edab3.ctex"]
 
 [params]
 
