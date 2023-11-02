@@ -1,5 +1,5 @@
 class_name EnemyState
-extends State
+extends TryState
 
 var enemy: Enemy
 

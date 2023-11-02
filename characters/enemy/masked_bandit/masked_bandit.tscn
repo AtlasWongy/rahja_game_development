@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bfs6ago0pm1m1" path="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_idle.png" id="1_5h1e4"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/enemy.gd" id="1_bf8vl"]
 [ext_resource type="Texture2D" uid="uid://bu6iebx4f4h3p" path="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_attack_1.png" id="2_6bswv"]
+[ext_resource type="Script" path="res://utils/state_machine/state_machine.gd" id="3_hgwir"]
 [ext_resource type="Texture2D" uid="uid://dtv8wntrjekc7" path="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_run.png" id="3_o335c"]
-[ext_resource type="Script" path="res://characters/enemy/masked_bandit/state_machine/state_machine.gd" id="7_beqlc"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/state_machine/hurt.gd" id="7_qu1fj"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/state_machine/death.gd" id="8_qnaxr"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/state_machine/idle.gd" id="8_vgyfd"]
@@ -379,7 +379,7 @@ position = Vector2(2.33333, 0)
 shape = SubResource("RectangleShape2D_rg2b7")
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("7_beqlc")
+script = ExtResource("3_hgwir")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
