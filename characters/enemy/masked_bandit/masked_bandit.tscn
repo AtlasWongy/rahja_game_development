@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c3xm1t1rdyxht"]
+[gd_scene load_steps=23 format=3 uid="uid://c3xm1t1rdyxht"]
 
 [ext_resource type="Texture2D" uid="uid://bfs6ago0pm1m1" path="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_idle.png" id="1_5h1e4"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/enemy.gd" id="1_bf8vl"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dtv8wntrjekc7" path="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_run.png" id="3_o335c"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/state_machine/state_machine.gd" id="7_beqlc"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/state_machine/hurt.gd" id="7_qu1fj"]
-[ext_resource type="Script" path="res://characters/enemy/masked_bandit/animations/masked_bandit_animations.gd" id="8_f746a"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/state_machine/death.gd" id="8_qnaxr"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/state_machine/idle.gd" id="8_vgyfd"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/state_machine/patrol.gd" id="10_s3kkn"]
@@ -415,7 +414,6 @@ script = ExtResource("12_6pnus")
 libraries = {
 "": SubResource("AnimationLibrary_oue6m")
 }
-script = ExtResource("8_f746a")
 
 [node name="Combat" type="Node2D" parent="."]
 
