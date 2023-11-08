@@ -1,4 +1,4 @@
-class_name TryState
+class_name State
 extends Node
 
 var state_machine = null

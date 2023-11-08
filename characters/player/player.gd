@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export_category("Player Stats")
 @export var health: int
-@export var is_alive: bool = true
+@export var is_alive: bool = true 
 
 @export_category("Movement")
 @export var speed: float = 100.0

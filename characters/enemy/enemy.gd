@@ -2,7 +2,7 @@ class_name Enemy
 extends CharacterBody2D
 
 @export_category("Enemy Stats")
-@export var health: int
+@export var health: int = 1
 @export var is_alive: bool = true
 
 @export_category("Movement")
@@ -12,7 +12,7 @@ extends CharacterBody2D
 @export var direction: float = 1.0
 @export var facing_right: bool = true
 
-
-var get_hit: bool = false
-var can_attack: bool = true
-var is_aggressive: bool = false
+@export_category("Combat")
+@export var get_hit: bool = false
+@export var can_attack: bool = true
+@export var is_aggressive: bool = false

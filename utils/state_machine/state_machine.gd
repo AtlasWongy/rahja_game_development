@@ -1,11 +1,11 @@
-class_name TryStateMachine
+class_name StateMachine
 extends Node
 
 signal transitioned(state_name)
 
 @export var initial_state := NodePath()
 
-@onready var state: TryState = get_node(initial_state)
+@onready var state: State = get_node(initial_state)
 
 func _ready() -> void:
 	await owner.ready
