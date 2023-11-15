@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cjvnt8dbi6yna" path="res://levels/platform_a/oak_woods_tileset.png" id="4_o43j3"]
 [ext_resource type="Texture2D" uid="uid://djf401s20ih6e" path="res://levels/platform_a/lamp.png" id="5_615g3"]
 [ext_resource type="Script" path="res://characters/enemy/enemy_patrol.gd" id="6_jcjck"]
-[ext_resource type="PackedScene" uid="uid://p2lwv8jb0i0f" path="res://characters/enemy/armor_kabuto/armor_kabuto.tscn" id="7_t10ao"]
+[ext_resource type="PackedScene" uid="uid://ds42x8sqq3a4x" path="res://characters/enemy/masked_bandit/masked_bandit.tscn" id="7_q6v8x"]
 [ext_resource type="PackedScene" uid="uid://wmiuw1wg8vr4" path="res://characters/player/player.tscn" id="8_mulp6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5a8gk"]
@@ -611,9 +611,6 @@ texture = ExtResource("5_615g3")
 [node name="EnemySpawnPoint" type="Node2D" parent="."]
 script = ExtResource("6_jcjck")
 
-[node name="ArmorKabuto" parent="EnemySpawnPoint" instance=ExtResource("7_t10ao")]
-position = Vector2(205, 150)
-
 [node name="Area2D" type="Area2D" parent="EnemySpawnPoint"]
 
 [node name="WayPointA" type="CollisionShape2D" parent="EnemySpawnPoint/Area2D"]
@@ -625,6 +622,9 @@ shape = SubResource("CircleShape2D_0xgy4")
 position = Vector2(308, 147)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_y3h7x")
+
+[node name="MaskedBandit" parent="EnemySpawnPoint" instance=ExtResource("7_q6v8x")]
+position = Vector2(228, 146)
 
 [node name="Player" parent="." instance=ExtResource("8_mulp6")]
 position = Vector2(8, 149)

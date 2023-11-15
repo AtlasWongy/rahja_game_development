@@ -1,26 +1,26 @@
-extends EnemyState
+extends MaskedBanditState
 
 @onready var idle_timer = $IdleTimer
-@onready var masked_bandit_animation = $"../../MaskedBanditAnimation"
+@onready var enemy_animation_player = $"../../EnemyAnimationPlayer"
 
 func enter(_msg := {}) -> void:
-	enemy.velocity = Vector2.ZERO
+	masked_bandit.velocity = Vector2.ZERO
 	idle_timer.start()
 
 func physics_update(_delta: float) -> void:
-	masked_bandit_animation.play("idle")
+	enemy_animation_player.play("idle")
 	
-	if !enemy.is_alive:
+	if !masked_bandit.is_alive:
 		idle_timer.stop()
 		state_machine.transition_to("Death")
 		return
 	
-	if enemy.get_hit:
+	if masked_bandit.get_hit:
 		idle_timer.stop()
 		state_machine.transition_to("Hurt")
 		return
 	
-	if enemy.is_aggressive:
+	if masked_bandit.is_aggressive:
 		state_machine.transition_to("Attack")
 
 func _on_idle_timer_timeout():

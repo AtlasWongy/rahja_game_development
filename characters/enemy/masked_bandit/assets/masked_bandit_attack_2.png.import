@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu6iebx4f4h3p"
-path="res://.godot/imported/masked_bandit_attack_1.png-c1cca8297ae6383dd73bd35da5cabb22.ctex"
+uid="uid://byjgblvbx3qfu"
+path="res://.godot/imported/masked_bandit_attack_2.png-7829d1c6a532176cd21fe3fa41dcbb5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_attack_1.png"
-dest_files=["res://.godot/imported/masked_bandit_attack_1.png-c1cca8297ae6383dd73bd35da5cabb22.ctex"]
+source_file="res://characters/enemy/masked_bandit/assets/masked_bandit_attack_2.png"
+dest_files=["res://.godot/imported/masked_bandit_attack_2.png-7829d1c6a532176cd21fe3fa41dcbb5b.ctex"]
 
 [params]
 

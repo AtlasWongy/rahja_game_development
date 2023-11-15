@@ -1,10 +1,11 @@
-extends EnemyState
+extends MaskedBanditState
 
-@onready var masked_bandit_animation = $"../../MaskedBanditAnimation"
+@onready var enemy_animation_player = $"../../EnemyAnimationPlayer"
+
 
 func enter(_msg := {}) -> void:
-	masked_bandit_animation.play("death")
-	await masked_bandit_animation.animation_finished
+	enemy_animation_player.play("death")
+	await enemy_animation_player.animation_finished
 	get_node("../..").queue_free()
 
 

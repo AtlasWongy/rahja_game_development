@@ -4,6 +4,7 @@ extends CollisionShape2D
 @onready var hit_cool_down = $"../HitCoolDown"
 
 func _on_hit_box_area_entered(area):
+	print("Player is hit: ", area)
 	player.is_hit = true
 	hit_cool_down.start()
 

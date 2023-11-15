@@ -1,22 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxkm6pfn74r7c"]
+[gd_scene load_steps=3 format=3 uid="uid://cxkm6pfn74r7c"]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_1rh5w"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_swkgk"]
-size = Vector2(20, 37.3333)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j27dy"]
-size = Vector2(20.6667, 36.6667)
+[ext_resource type="PackedScene" uid="uid://1hhob5js4ti7" path="res://components/state_machine_component/state_machine_component.tscn" id="2_7rm00"]
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_1rh5w")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 
-[node name="EnemyBodyShape" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_swkgk")
-
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachineComponent" parent="." instance=ExtResource("2_7rm00")]
 
 [node name="EnemyDetection" type="RayCast2D" parent="."]
 
@@ -25,7 +17,3 @@ shape = SubResource("RectangleShape2D_swkgk")
 [node name="Combat" type="Node2D" parent="."]
 
 [node name="HitBox" type="Area2D" parent="."]
-
-[node name="HitBoxShape" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("RectangleShape2D_j27dy")
-debug_color = Color(0.65098, 0.431373, 0.756863, 0.419608)

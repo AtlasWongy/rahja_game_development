@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtv8wntrjekc7"
-path="res://.godot/imported/masked_bandit_run.png-3d2b0f9e678e239c0874fb21b8be75ad.ctex"
+uid="uid://bfs6ago0pm1m1"
+path="res://.godot/imported/masked_bandit_idle.png-159e29a7ce421420a337e9041a9a743f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_run.png"
-dest_files=["res://.godot/imported/masked_bandit_run.png-3d2b0f9e678e239c0874fb21b8be75ad.ctex"]
+source_file="res://characters/enemy/masked_bandit/assets/masked_bandit_idle.png"
+dest_files=["res://.godot/imported/masked_bandit_idle.png-159e29a7ce421420a337e9041a9a743f.ctex"]
 
 [params]
 

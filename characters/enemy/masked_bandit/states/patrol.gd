@@ -1,29 +1,29 @@
-extends EnemyState
+extends MaskedBanditState
 
-@onready var masked_bandit_animation = $"../../MaskedBanditAnimation"
+@onready var enemy_animation_player = $"../../EnemyAnimationPlayer"
 
 func physics_update(delta: float) -> void:
-	enemy.velocity.x = move_toward(
-		enemy.velocity.x, 
-		enemy.speed * enemy.direction, 
-		enemy.acceleration * delta
+	masked_bandit.velocity.x = move_toward(
+		masked_bandit.velocity.x, 
+		masked_bandit.speed * masked_bandit.direction, 
+		masked_bandit.acceleration * delta
 	)
 	
-	masked_bandit_animation.play("patrol")
+	enemy_animation_player.play("patrol")
 	
-	enemy.move_and_slide()
+	masked_bandit.move_and_slide()
 	
-	if enemy.is_aggressive:
+	if masked_bandit.is_aggressive:
 		state_machine.transition_to("Attack")
 
 func change_state():
-	enemy.direction *= -1
+	masked_bandit.direction *= -1
 	flip()
 	state_machine.transition_to("Idle")
 
 func flip():
-	if enemy.facing_right:
-		enemy.facing_right = false
-	elif !enemy.facing_right:
-		enemy.facing_right = true
-	enemy.scale.x = abs(enemy.scale.x) * -1
+	if masked_bandit.facing_right:
+		masked_bandit.facing_right = false
+	elif !masked_bandit.facing_right:
+		masked_bandit.facing_right = true
+	masked_bandit.scale.x = abs(masked_bandit.scale.x) * -1

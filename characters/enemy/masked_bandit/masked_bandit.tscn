@@ -1,59 +1,100 @@
-[gd_scene load_steps=23 format=3 uid="uid://c3xm1t1rdyxht"]
+[gd_scene load_steps=24 format=3 uid="uid://ds42x8sqq3a4x"]
 
-[ext_resource type="Texture2D" uid="uid://bfs6ago0pm1m1" path="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_idle.png" id="1_5h1e4"]
+[ext_resource type="PackedScene" uid="uid://cxkm6pfn74r7c" path="res://characters/enemy/enemy.tscn" id="1_obakx"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/masked_bandit.gd" id="1_rhvx1"]
-[ext_resource type="Texture2D" uid="uid://bu6iebx4f4h3p" path="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_attack_1.png" id="2_6bswv"]
-[ext_resource type="Script" path="res://utils/state_machine/state_machine.gd" id="3_hgwir"]
-[ext_resource type="Texture2D" uid="uid://dtv8wntrjekc7" path="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_run.png" id="3_o335c"]
+[ext_resource type="Texture2D" uid="uid://dtv8wntrjekc7" path="res://characters/enemy/masked_bandit/assets/masked_bandit_patrol.png" id="3_1siox"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/states/idle.gd" id="4_q0faq"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/states/patrol.gd" id="5_ax8wv"]
+[ext_resource type="Texture2D" uid="uid://dnaaydg0p2fwf" path="res://characters/enemy/masked_bandit/assets/masked_bandit_hurt.png" id="5_e32ol"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/states/attack.gd" id="6_5bx4b"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/states/hurt.gd" id="7_b73ya"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/states/death.gd" id="8_h5mxe"]
-[ext_resource type="Texture2D" uid="uid://x26u6uavjoa4" path="res://characters/enemy/masked_bandit/masked_bandit_animations_assets/masked_bandit_death.png" id="11_0livm"]
+[ext_resource type="Script" path="res://characters/enemy/enemy_detection.gd" id="9_oja7x"]
+[ext_resource type="Texture2D" uid="uid://bu6iebx4f4h3p" path="res://characters/enemy/masked_bandit/assets/masked_bandit_attack_1.png" id="10_xmmcf"]
+[ext_resource type="Texture2D" uid="uid://x26u6uavjoa4" path="res://characters/enemy/masked_bandit/assets/masked_bandit_death.png" id="11_g05on"]
 [ext_resource type="Script" path="res://characters/enemy/masked_bandit/hitbox/hitbox.gd" id="11_gn4t7"]
-[ext_resource type="Script" path="res://characters/enemy/masked_bandit/enemy_detection.gd" id="12_6pnus"]
+[ext_resource type="Texture2D" uid="uid://bfs6ago0pm1m1" path="res://characters/enemy/masked_bandit/assets/masked_bandit_idle.png" id="12_d7ivv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg2b7"]
-size = Vector2(24.6667, 56)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bg5ct"]
+size = Vector2(22, 54.6667)
 
-[sub_resource type="Animation" id="Animation_iv4s1"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_6mo10"]
+resource_name = "idle"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MaskedBanditSprite:frame")
+tracks/0/path = NodePath("EnemySprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [ExtResource("12_d7ivv")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MaskedBanditSprite:texture")
+tracks/1/path = NodePath("EnemySprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_o335c")]
+"values": [4]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MaskedBanditSprite:hframes")
+tracks/2/path = NodePath("EnemySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_x2rg5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_d7ivv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemySprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [8]
+"values": [0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -94,35 +135,75 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("MaskedBanditSprite:visible")
+tracks/6/path = NodePath("Combat/CombatAreaDetection/CombatHitBody:polygon")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [PackedVector2Array(48, -4, 64, -26, 76, -18, 82, -12, 84, -6, 84, 2, 78, 10, 70, 18, 60, 22, 52, 26, 42, 26, 20, 26, 24, 22, 42, 18, 52, 12, 56, 6, 56, 2)]
 }
 
-[sub_resource type="Animation" id="Animation_uqiww"]
-resource_name = "attack"
-length = 0.8
+[sub_resource type="Animation" id="Animation_akoru"]
+resource_name = "patrol"
+length = 1.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MaskedBanditSprite:texture")
+tracks/0/path = NodePath("EnemySprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_6bswv")]
+"values": [ExtResource("3_1siox")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MaskedBanditSprite:hframes")
+tracks/1/path = NodePath("EnemySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_5iohb"]
+resource_name = "attack_1"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_xmmcf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemySprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -134,7 +215,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MaskedBanditSprite:frame")
+tracks/2/path = NodePath("EnemySprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -150,55 +231,107 @@ tracks/3/path = NodePath("Combat/CombatAreaDetection:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [false, true, false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Combat/CombatAreaDetection/CombatHitBody:visible")
+tracks/4/path = NodePath("Combat/CombatAreaDetection/CombatHitBody:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true, false]
+"values": [true, false, true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Combat/CombatAreaDetection/CombatHitBody:disabled")
+tracks/5/path = NodePath("Combat/CombatAreaDetection/CombatHitBody:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Combat/CombatAreaDetection/CombatHitBody:polygon")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [PackedVector2Array(48, -4, 64, -26, 76, -18, 82, -12, 84, -6, 84, 2, 78, 10, 70, 18, 60, 22, 52, 26, 42, 26, 20, 26, 24, 22, 42, 18, 52, 12, 56, 6, 56, 2), PackedVector2Array(10, 8, 16, 6, 12, 2)]
 }
 
-[sub_resource type="Animation" id="Animation_mtvnf"]
-resource_name = "death"
-length = 1.2
+[sub_resource type="Animation" id="Animation_gd1pi"]
+resource_name = "hurt"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MaskedBanditSprite:texture")
+tracks/0/path = NodePath("EnemySprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("11_0livm")]
+"values": [ExtResource("5_e32ol")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MaskedBanditSprite:hframes")
+tracks/1/path = NodePath("EnemySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_08qly"]
+resource_name = "death"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_g05on")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemySprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -210,230 +343,97 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MaskedBanditSprite:frame")
+tracks/2/path = NodePath("EnemySprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [0, 1, 2, 3, 4, 6]
 }
 
-[sub_resource type="Animation" id="Animation_8uhbt"]
-resource_name = "hurt"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MaskedBanditSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_5h1e4")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MaskedBanditSprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MaskedBanditSprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MaskedBanditSprite:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-
-[sub_resource type="Animation" id="Animation_ayaf2"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MaskedBanditSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_5h1e4")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MaskedBanditSprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MaskedBanditSprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_2hobn"]
-resource_name = "patrol"
-length = 1.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MaskedBanditSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_o335c")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MaskedBanditSprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MaskedBanditSprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 4, 3, 5, 6, 7]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_oue6m"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jrhsh"]
 _data = {
-"RESET": SubResource("Animation_iv4s1"),
-"attack": SubResource("Animation_uqiww"),
-"death": SubResource("Animation_mtvnf"),
-"hurt": SubResource("Animation_8uhbt"),
-"idle": SubResource("Animation_ayaf2"),
-"patrol": SubResource("Animation_2hobn")
+"RESET": SubResource("Animation_x2rg5"),
+"attack_1": SubResource("Animation_5iohb"),
+"death": SubResource("Animation_08qly"),
+"hurt": SubResource("Animation_gd1pi"),
+"idle": SubResource("Animation_6mo10"),
+"patrol": SubResource("Animation_akoru")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vi8qp"]
-size = Vector2(24, 56)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26cb2"]
+size = Vector2(22, 54.6667)
 
-[node name="MaskedBandit" type="CharacterBody2D"]
+[node name="MaskedBandit" instance=ExtResource("1_obakx")]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_rhvx1")
 
-[node name="MaskedBanditSprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_o335c")
-hframes = 8
+[node name="EnemySprite" parent="." index="0"]
+texture = ExtResource("12_d7ivv")
+hframes = 4
 
-[node name="MaskedBanditBodyShape" type="CollisionShape2D" parent="."]
-position = Vector2(2.33333, 0)
-shape = SubResource("RectangleShape2D_rg2b7")
+[node name="MaskedBanditBodyShape" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(1, 0.666665)
+shape = SubResource("RectangleShape2D_bg5ct")
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("3_hgwir")
+[node name="StateMachineComponent" parent="." index="2"]
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachineComponent" index="0"]
 script = ExtResource("4_q0faq")
 
-[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
+[node name="IdleTimer" type="Timer" parent="StateMachineComponent/Idle" index="0"]
 process_callback = 0
 one_shot = true
 
-[node name="Patrol" type="Node" parent="StateMachine"]
+[node name="Patrol" type="Node" parent="StateMachineComponent" index="1"]
 script = ExtResource("5_ax8wv")
 
-[node name="Attack" type="Node" parent="StateMachine"]
+[node name="Attack" type="Node" parent="StateMachineComponent" index="2"]
 script = ExtResource("6_5bx4b")
 
-[node name="AttackCoolDown" type="Timer" parent="StateMachine/Attack"]
+[node name="AttackCoolDown" type="Timer" parent="StateMachineComponent/Attack" index="0"]
 process_callback = 0
 wait_time = 2.0
 one_shot = true
 
-[node name="Hurt" type="Node" parent="StateMachine"]
+[node name="Hurt" type="Node" parent="StateMachineComponent" index="3"]
 script = ExtResource("7_b73ya")
 
-[node name="Death" type="Node" parent="StateMachine"]
+[node name="Death" type="Node" parent="StateMachineComponent" index="4"]
 script = ExtResource("8_h5mxe")
 
-[node name="EnemyDetection" type="RayCast2D" parent="."]
-target_position = Vector2(30, 0)
-script = ExtResource("12_6pnus")
+[node name="EnemyDetection" parent="." index="3"]
+target_position = Vector2(50, 0)
+script = ExtResource("9_oja7x")
 
-[node name="MaskedBanditAnimation" type="AnimationPlayer" parent="."]
+[node name="EnemyAnimationPlayer" parent="." index="4"]
 libraries = {
-"": SubResource("AnimationLibrary_oue6m")
+"": SubResource("AnimationLibrary_jrhsh")
 }
 
-[node name="Combat" type="Node2D" parent="."]
-
-[node name="CombatAreaDetection" type="Area2D" parent="Combat"]
+[node name="CombatAreaDetection" type="Area2D" parent="Combat" index="0"]
 visible = false
 collision_layer = 8
 collision_mask = 8
 
-[node name="CombatHitBody" type="CollisionPolygon2D" parent="Combat/CombatAreaDetection"]
+[node name="CombatHitBody" type="CollisionPolygon2D" parent="Combat/CombatAreaDetection" index="0"]
 visible = false
-polygon = PackedVector2Array(38, 18, 48, 14, 54, 8, 54, 2, 48, -4, 40, -6, 34, -14, 40, -22, 46, -26, 56, -28, 74, -20, 82, -6, 82, 2, 76, 14, 60, 22, 40, 28, 28, 24)
+polygon = PackedVector2Array(48, -4, 64, -26, 76, -18, 82, -12, 84, -6, 84, 2, 78, 10, 70, 18, 60, 22, 52, 26, 42, 26, 20, 26, 24, 22, 42, 18, 52, 12, 56, 6, 56, 2)
 disabled = true
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="HitBox" parent="." index="6"]
 collision_layer = 16
 collision_mask = 16
 
-[node name="HitBoxShape" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(2, 0)
-shape = SubResource("RectangleShape2D_vi8qp")
-debug_color = Color(0.780392, 0.32549, 0.741176, 0.419608)
+[node name="HitBoxShape" type="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(1, 0.666667)
+shape = SubResource("RectangleShape2D_26cb2")
+debug_color = Color(0.756863, 0.4, 0.572549, 0.419608)
 script = ExtResource("11_gn4t7")
 
-[connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]
-[connection signal="timeout" from="StateMachine/Attack/AttackCoolDown" to="StateMachine/Attack" method="_on_attack_cool_down_timeout"]
+[connection signal="timeout" from="StateMachineComponent/Idle/IdleTimer" to="StateMachineComponent/Idle" method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="StateMachineComponent/Attack/AttackCoolDown" to="StateMachineComponent/Attack" method="_on_attack_cool_down_timeout"]
 [connection signal="area_entered" from="HitBox" to="HitBox/HitBoxShape" method="_on_hit_box_area_entered"]

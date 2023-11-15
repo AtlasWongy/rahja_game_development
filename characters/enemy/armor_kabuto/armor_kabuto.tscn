@@ -1,20 +1,22 @@
-[gd_scene load_steps=23 format=3 uid="uid://p2lwv8jb0i0f"]
+[gd_scene load_steps=24 format=3 uid="uid://p2lwv8jb0i0f"]
 
 [ext_resource type="PackedScene" uid="uid://cxkm6pfn74r7c" path="res://characters/enemy/enemy.tscn" id="1_lh0as"]
 [ext_resource type="Texture2D" uid="uid://bbcx2sidii0gu" path="res://characters/enemy/armor_kabuto/assets/armor_kabuto_idle.png" id="2_c73s7"]
 [ext_resource type="Script" path="res://characters/enemy/armor_kabuto/armor_kabuto.gd" id="2_gnakq"]
 [ext_resource type="Texture2D" uid="uid://d1rlhn0hb76xc" path="res://characters/enemy/armor_kabuto/assets/armor_kabuto_patrol.png" id="3_skcqg"]
-[ext_resource type="Script" path="res://utils/state_machine/state_machine.gd" id="4_kfg22"]
 [ext_resource type="Texture2D" uid="uid://dvalcnjpk0ed4" path="res://characters/enemy/armor_kabuto/assets/armor_kabuto_attack_1.png" id="4_y57sa"]
 [ext_resource type="Script" path="res://characters/enemy/armor_kabuto/states/idle.gd" id="5_jfd8g"]
 [ext_resource type="Texture2D" uid="uid://c8egno3d6c6sl" path="res://characters/enemy/armor_kabuto/assets/armor_kabuto_hurt.png" id="5_u0jyk"]
 [ext_resource type="Script" path="res://characters/enemy/armor_kabuto/states/patrol.gd" id="6_1uxw7"]
 [ext_resource type="Texture2D" uid="uid://cb0elbltxtp21" path="res://characters/enemy/armor_kabuto/assets/armor_kabuto_death.png" id="6_xrnvp"]
 [ext_resource type="Script" path="res://characters/enemy/armor_kabuto/states/attack.gd" id="7_vo6np"]
-[ext_resource type="Script" path="res://characters/enemy/masked_bandit/enemy_detection.gd" id="8_emqa2"]
 [ext_resource type="Script" path="res://characters/enemy/armor_kabuto/states/hurt.gd" id="8_iqdab"]
 [ext_resource type="Script" path="res://characters/enemy/armor_kabuto/states/death.gd" id="9_qtev6"]
+[ext_resource type="Script" path="res://characters/enemy/enemy_detection.gd" id="9_vh6f8"]
 [ext_resource type="Script" path="res://characters/enemy/armor_kabuto/hitbox/hitbox.gd" id="15_dscmb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkigq"]
+size = Vector2(20, 36)
 
 [sub_resource type="Animation" id="Animation_j5538"]
 length = 0.001
@@ -337,6 +339,9 @@ _data = {
 "patrol": SubResource("Animation_aeusf")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6sre"]
+size = Vector2(20, 36)
+
 [node name="ArmorKabuto" instance=ExtResource("1_lh0as")]
 scale = Vector2(0.75, 0.75)
 script = ExtResource("2_gnakq")
@@ -346,40 +351,40 @@ health = 3
 texture = ExtResource("2_c73s7")
 hframes = 4
 
-[node name="EnemyBodyShape" parent="." index="1"]
-position = Vector2(-0.666667, -5.33333)
+[node name="ArmorKabutoBodyShape" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(-0.666667, -4.66667)
+shape = SubResource("RectangleShape2D_qkigq")
 
-[node name="StateMachine" parent="." index="2"]
-script = ExtResource("4_kfg22")
+[node name="StateMachineComponent" parent="." index="2"]
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" index="0"]
+[node name="Idle" type="Node" parent="StateMachineComponent" index="0"]
 script = ExtResource("5_jfd8g")
 
-[node name="IdleTimer" type="Timer" parent="StateMachine/Idle" index="0"]
+[node name="IdleTimer" type="Timer" parent="StateMachineComponent/Idle" index="0"]
 process_callback = 0
 one_shot = true
 
-[node name="Patrol" type="Node" parent="StateMachine" index="1"]
+[node name="Patrol" type="Node" parent="StateMachineComponent" index="1"]
 script = ExtResource("6_1uxw7")
 
-[node name="Attack" type="Node" parent="StateMachine" index="2"]
+[node name="Attack" type="Node" parent="StateMachineComponent" index="2"]
 script = ExtResource("7_vo6np")
 
-[node name="AttackCoolDown" type="Timer" parent="StateMachine/Attack" index="0"]
+[node name="AttackCoolDown" type="Timer" parent="StateMachineComponent/Attack" index="0"]
 process_callback = 0
 wait_time = 2.0
 one_shot = true
 
-[node name="Hurt" type="Node" parent="StateMachine" index="3"]
+[node name="Hurt" type="Node" parent="StateMachineComponent" index="3"]
 script = ExtResource("8_iqdab")
 
-[node name="Death" type="Node" parent="StateMachine" index="4"]
+[node name="Death" type="Node" parent="StateMachineComponent" index="4"]
 script = ExtResource("9_qtev6")
 
 [node name="EnemyDetection" parent="." index="3"]
 target_position = Vector2(30, 0)
-script = ExtResource("8_emqa2")
+script = ExtResource("9_vh6f8")
 
 [node name="EnemyAnimationPlayer" parent="." index="4"]
 libraries = {
@@ -397,14 +402,15 @@ polygon = PackedVector2Array(26.6667, 6.66667, 33.3333, 0, 34.6667, -9.33333, 29
 disabled = true
 
 [node name="HitBox" parent="." index="6"]
-position = Vector2(0, -13.3333)
 collision_layer = 16
 collision_mask = 16
 
-[node name="HitBoxShape" parent="HitBox" index="0"]
-position = Vector2(-0.333333, 8.33333)
+[node name="HitBoxShape" type="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(0, -4.66667)
+shape = SubResource("RectangleShape2D_q6sre")
+debug_color = Color(0.717647, 0.384314, 0.74902, 0.419608)
 script = ExtResource("15_dscmb")
 
-[connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]
-[connection signal="timeout" from="StateMachine/Attack/AttackCoolDown" to="StateMachine/Attack" method="_on_attack_cool_down_timeout"]
+[connection signal="timeout" from="StateMachineComponent/Idle/IdleTimer" to="StateMachineComponent/Idle" method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="StateMachineComponent/Attack/AttackCoolDown" to="StateMachineComponent/Attack" method="_on_attack_cool_down_timeout"]
 [connection signal="area_entered" from="HitBox" to="HitBox/HitBoxShape" method="_on_hit_box_area_entered"]

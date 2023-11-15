@@ -1,13 +1,13 @@
-extends EnemyState
+extends MaskedBanditState
 
-@onready var masked_bandit_animation = $"../../MaskedBanditAnimation"
+@onready var enemy_animation_player = $"../../EnemyAnimationPlayer"
 
 func enter(_msg := {}) -> void:
-	enemy.velocity = Vector2.ZERO
+	masked_bandit.velocity = Vector2.ZERO
 
 func physics_update(_delta: float) -> void:
-	masked_bandit_animation.play("hurt")
-	await masked_bandit_animation.animation_finished
-	enemy.get_hit = false
+	enemy_animation_player.play("hurt")
+	await enemy_animation_player.animation_finished
+	enemy_animation_player.get_hit = false
 	state_machine.transition_to("Idle")
 	
